@@ -9,10 +9,8 @@
     <ion-list-header>Derniers aticles</ion-list-header>
     <ion-item *ngFor="let article of articles">
       <ion-avatar item-left>
-        <img src="https://pbs.twimg.com/profile_images/671382301629116416/BPGcowRw_bigger.jpg">
       </ion-avatar>
-      <h2>{{article.title}}</h2>
-      <p>{{article.text}}</p>
+      <h2>{{article.title.rendered}}</h2>
     </ion-item >
   </ion-list>
 </ion-content>

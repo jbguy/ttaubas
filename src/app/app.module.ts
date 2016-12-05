@@ -6,6 +6,8 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { ArticleWordpress } from '../providers/article-wordpress';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,6 +27,8 @@ import { TabsPage } from '../pages/tabs/tabs';
     HomePage,
     TabsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    ArticleWordpress
+  ]
 })
 export class AppModule {}

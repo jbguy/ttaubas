@@ -2,27 +2,23 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
+import { Article } from '../../models/article';
+import { ArticleWordpress } from '../../providers/article-wordpress';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  icons: string[];
-  articles: Array<{title: string, text: string, icon: string}>;
-  constructor(public navCtrl: NavController) {
+  articles: Article[];
+  constructor(public navCtrl: NavController, public artWordpress: ArticleWordpress) {
 
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+     artWordpress.load().subscribe(articles => {
+      this.articles = articles;
+      console.log(this.articles);
+    })
 
-    this.articles = [];
     
-    for(let i = 1; i < 11; i++) {
-      this.articles.push({
-        title: 'Item ' + i,
-        text: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
   }
 
 }
