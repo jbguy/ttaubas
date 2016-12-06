@@ -1,10 +1,14 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
+import { TruncatePipe } from '../pipes/truncate';
+
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ArticlePage } from '../pages/article/article';
 
 import { ArticleWordpress } from '../providers/article-wordpress';
 
@@ -14,7 +18,9 @@ import { ArticleWordpress } from '../providers/article-wordpress';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ArticlePage,
+    TruncatePipe
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -25,7 +31,8 @@ import { ArticleWordpress } from '../providers/article-wordpress';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ArticlePage
   ],
   providers: [
     ArticleWordpress

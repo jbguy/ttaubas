@@ -21,4 +21,8 @@ export class ArticleWordpress {
       return this.http.get(`${this.wordpressUrl}/posts?_embed`)
         .map(res => <Article[]>res.json());
     }
+    loadArticle(id): Observable<Article> {
+      return this.http.get(`${this.wordpressUrl}/posts/` + id + `?_embed`)
+        .map(res => <Article>res.json());
+    }
 }

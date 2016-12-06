@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 
 import { Article } from '../../models/article';
 import { ArticleWordpress } from '../../providers/article-wordpress';
+import { ArticlePage } from '../../pages/article/article';
 
 @Component({
   selector: 'page-home',
@@ -14,11 +15,19 @@ export class HomePage {
   constructor(public navCtrl: NavController, public artWordpress: ArticleWordpress) {
 
      artWordpress.load().subscribe(articles => {
+      articles.forEach(function(art, index) {
+        if (art['_embedded']['wp:featuredmedia'] != null) {
+          art["source_url"] = art['_embedded']['wp:featuredmedia'][0]['source_url'];
+        }
+      });
+      console.log(articles);
       this.articles = articles;
-      console.log(this.articles);
     })
-
     
+  }
+
+  goToArticle(id: number) {
+    this.navCtrl.push(ArticlePage, {id});
   }
 
 }

@@ -1,16 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>TT Aubas</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-   <ion-list>
-    <ion-list-header>Derniers aticles</ion-list-header>
-    <ion-item *ngFor="let article of articles">
-      <ion-avatar item-left>
-      </ion-avatar>
-      <h2>{{article.title.rendered}}</h2>
-    </ion-item >
-  </ion-list>
+  <ion-card *ngFor="let article of articles" (click)="goToArticle(article.id)">
+    <img [src]="article.source_url" alt="">
+    <ion-card-content>
+      <ion-card-title>{{article.title.rendered}}</ion-card-title>
+      <p [innerHTML]="article.content.rendered | truncate:[100]"></p>
+    </ion-card-content >
+  </ion-card>
 </ion-content>
