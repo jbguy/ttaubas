@@ -35,7 +35,8 @@ import { ArticleWordpress } from '../providers/article-wordpress';
     ArticlePage
   ],
   providers: [
-    ArticleWordpress
+    ArticleWordpress,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}

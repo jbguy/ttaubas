@@ -6,6 +6,10 @@
 
 <ion-content padding>
   <ion-card>
-   {{article.title.rendered}}
+   <img [src]="article?.source_url" alt="">
+    <ion-card-content>
+      <ion-card-title>{{article?.title.rendered}}</ion-card-title>
+      <p [innerHTML]="article?.content.rendered"></p>
+    </ion-card-content >
   </ion-card>
 </ion-content>

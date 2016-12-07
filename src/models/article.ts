@@ -1,6 +1,11 @@
 export interface Article {
   id: number;
   date: string;
-  title: Object;
-  content: Object;
+  title: {
+    rendered: string
+  };
+  content: {
+    rendered: string
+  };
+  source_url: string
 }
