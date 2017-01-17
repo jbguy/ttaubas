@@ -20,10 +20,22 @@ export class HomePage {
           art["source_url"] = art['_embedded']['wp:featuredmedia'][0]['source_url'];
         }
       });
-      console.log(articles);
       this.articles = articles;
     })
     
+  }
+
+  doRefresh(refresher) {
+    this.artWordpress.load().subscribe(articles => {
+      articles.forEach(function(art, index) {
+        if (art['_embedded']['wp:featuredmedia'] != null) {
+          art["source_url"] = art['_embedded']['wp:featuredmedia'][0]['source_url'];
+        }
+      });
+      this.articles = articles;
+      refresher.complete();
+    })
+
   }
 
   goToArticle(id: number) {

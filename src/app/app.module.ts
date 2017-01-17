@@ -9,6 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ArticlePage } from '../pages/article/article';
+import {MapPage} from '../pages/map/map';
 
 import { ArticleWordpress } from '../providers/article-wordpress';
 
@@ -20,6 +21,7 @@ import { ArticleWordpress } from '../providers/article-wordpress';
     HomePage,
     TabsPage,
     ArticlePage,
+    MapPage,
     TruncatePipe
   ],
   imports: [
@@ -32,7 +34,8 @@ import { ArticleWordpress } from '../providers/article-wordpress';
     ContactPage,
     HomePage,
     TabsPage,
-    ArticlePage
+    ArticlePage,
+    MapPage
   ],
   providers: [
     ArticleWordpress,

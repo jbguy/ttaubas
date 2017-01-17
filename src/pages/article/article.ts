@@ -17,7 +17,7 @@ export class ArticlePage {
       if (article['_embedded']['wp:featuredmedia'] != null) {
         article["source_url"] = article['_embedded']['wp:featuredmedia'][0]['source_url'];
       }
-      console.log(article);
+      //console.log(article);
       this.article = article;
     });
 
