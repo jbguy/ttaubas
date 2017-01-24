@@ -11,10 +11,13 @@
   </ion-refresher>
 
   <ion-card *ngFor="let article of articles" (click)="goToArticle(article.id)">
-    <img [src]="article.source_url" alt="">
+    <ion-item>
+      <h2>{{article.title.rendered}}</h2>
+      <p>{{article.date | date:'d MMM y' }}</p>
+    </ion-item>
+    <img *ngIf="article.source_url" [src]="article.source_url" alt="">
     <ion-card-content>
-      <ion-card-title>{{article.title.rendered}}</ion-card-title>
-      <p [innerHTML]="article.content.rendered | truncate:[100]"></p>
+      <p [innerHTML]="article.content.rendered | truncate:[150]"></p>
     </ion-card-content >
   </ion-card>
 </ion-content>

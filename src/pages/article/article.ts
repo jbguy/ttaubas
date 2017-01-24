@@ -12,13 +12,15 @@ export class ArticlePage {
   article: Article;
   id: number;
   constructor(public navCtrl: NavController, public artWordpress: ArticleWordpress, private navParams: NavParams) {
+
     this.id = navParams.get('id');
-    artWordpress.loadArticle(this.id).subscribe(article => {
-      if (article['_embedded']['wp:featuredmedia'] != null) {
-        article["source_url"] = article['_embedded']['wp:featuredmedia'][0]['source_url'];
-      }
-      //console.log(article);
-      this.article = article;
+    artWordpress.loadArticle(this.id)
+      .subscribe(article => {
+        if (article['_embedded']['wp:featuredmedia'] != null) {
+          article["source_url"] = article['_embedded']['wp:featuredmedia'][0]['source_url'];
+        }
+        console.log(article);
+        this.article = article;
     });
 
   }

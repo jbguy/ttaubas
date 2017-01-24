@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>article</ion-title>
+    <ion-title>{{article?.title.rendered}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card>
-   <img [src]="article?.source_url" alt="">
+   <img *ngIf="article?.source_url" [src]="article?.source_url" alt="">
     <ion-card-content>
       <ion-card-title>{{article?.title.rendered}}</ion-card-title>
       <p [innerHTML]="article?.content.rendered"></p>

@@ -1,6 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
 import { TruncatePipe } from '../pipes/truncate';
 
 import { MyApp } from './app.component';
@@ -12,6 +14,13 @@ import { ArticlePage } from '../pages/article/article';
 import {MapPage} from '../pages/map/map';
 
 import { ArticleWordpress } from '../providers/article-wordpress';
+import { CategoryWordpress } from '../providers/category-wordpress';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': 'e756e1e8'
+  }
+};
 
 @NgModule({
   declarations: [
@@ -25,7 +34,8 @@ import { ArticleWordpress } from '../providers/article-wordpress';
     TruncatePipe
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,6 +49,7 @@ import { ArticleWordpress } from '../providers/article-wordpress';
   ],
   providers: [
     ArticleWordpress,
+    CategoryWordpress,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
