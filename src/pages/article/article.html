@@ -5,11 +5,17 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-   <img *ngIf="article?.source_url" [src]="article?.source_url" alt="">
-    <ion-card-content>
-      <ion-card-title>{{article?.title.rendered}}</ion-card-title>
-      <p [innerHTML]="article?.content.rendered"></p>
-    </ion-card-content >
-  </ion-card>
+  <div  *ngIf="loaded">
+    <ion-card >
+    <img *ngIf="article?.source_url" [src]="article?.source_url" alt="">
+      <ion-card-content>
+        <!--Catégories -->
+        <ion-badge color="danger">{{article?.categoriesName}}</ion-badge>
+        <ion-card-title>{{article?.title.rendered}}</ion-card-title>
+        <p>Le {{article?.date | date:'d MMM y' }}</p>
+        <p [innerHTML]="article?.content.rendered"></p>
+      </ion-card-content >
+    </ion-card>
+    <button ion-button full color="danger" (click)="onClickBack()"><ion-icon name="arrow-dropleft"></ion-icon>&nbsp;Retour</button>
+  </div>
 </ion-content>

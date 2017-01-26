@@ -21,5 +21,10 @@ export class CategoryWordpress {
       return this.http.get(`${this.wordpressUrl}/categories`)
         .map(res => <Category[]>res.json());
     }
+
+    loadCategory(id): Observable<Category> {
+      return this.http.get(`${this.wordpressUrl}/categories/` + id)
+        .map(res => <Category>res.json());
+    }
     
 }

@@ -9,9 +9,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
+  <h2 class="page-title">Derniers articles</h2>
   <ion-card *ngFor="let article of articles" (click)="goToArticle(article.id)">
-    <ion-item>
+    <ion-item text-wrap>
       <h2>{{article.title.rendered}}</h2>
       <p>{{article.date | date:'d MMM y' }}</p>
     </ion-item>
