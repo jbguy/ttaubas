@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
 import { Article } from '../../models/article';
 import { ArticleWordpress } from '../../providers/article-wordpress';
@@ -12,30 +12,43 @@ import { ArticlePage } from '../../pages/article/article';
 })
 export class HomePage {
   articles: Article[];
-  constructor(public navCtrl: NavController, public artWordpress: ArticleWordpress) {
+  constructor(public navCtrl: NavController, public artWordpress: ArticleWordpress, private loadingCtrl: LoadingController) {
+  }
 
-     artWordpress.load().subscribe(articles => {
-      articles.forEach(function(art, index) {
-        if (art['_embedded']['wp:featuredmedia'] != null) {
-          art["source_url"] = art['_embedded']['wp:featuredmedia'][0]['source_url'];
-        }
+  ngOnInit() {
+    let loading = this.loadingCtrl.create({content:'Chargement'});
+    loading.present(); //nav instance of NavController
+
+    this.loadData()
+      .then(data => {
+        loading.dismiss();
       });
-      this.articles = articles;
-    })
-    
   }
 
   doRefresh(refresher) {
-    this.artWordpress.load().subscribe(articles => {
-      articles.forEach(function(art, index) {
-        if (art['_embedded']['wp:featuredmedia'] != null) {
-          art["source_url"] = art['_embedded']['wp:featuredmedia'][0]['source_url'];
-        }
+    this.loadData()
+      .then(data => {
+        refresher.complete();
       });
-      this.articles = articles;
-      refresher.complete();
-    })
+  }
 
+  /**
+   * Function who load articles from Worpdress service
+   */
+  private loadData(): Promise<any> {
+    let myCtrl = this;
+
+    return new Promise((resolve, reject) => {
+      myCtrl.artWordpress.load().subscribe(articles => {
+        articles.forEach(function(art, index) {
+          if (art['_embedded']['wp:featuredmedia'] != null) {
+            art["source_url"] = art['_embedded']['wp:featuredmedia'][0]['source_url'];
+          }
+        });
+        myCtrl.articles = articles;
+        resolve();
+      })
+    });
   }
 
   goToArticle(id: number) {
